@@ -4,3 +4,32 @@
   background-repeat: no-repeat;
   background-size: 100% auto;
 }
+
+.container-main{
+  width: 750px;
+  margin: 0 auto;
+}
+
+.title{
+  letter-spacing: 20px;
+}
+
+button{
+  background: none;
+  border: none;
+}
+
+input{
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 100%;
+}
+
+ul, li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: white;
+  border-radius: 5px;
+}
