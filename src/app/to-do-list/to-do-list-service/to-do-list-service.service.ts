@@ -6,8 +6,17 @@ import { Injectable } from '@angular/core';
 export class ToDoListService {
   public id: number = 0;
   public forLabel: number = 0;
+  public tasks: string[] = [];
 
   constructor() { }
+
+  pressEnter(event: KeyboardEvent): string[] {
+    if (event.code === 'Enter') {
+      this.tasks.push((<HTMLInputElement>event.target).value);
+      (<HTMLInputElement>event.target).value = '';
+    }
+    return this.tasks
+  }
 
   idAleatorio(): number {
     this.id++;

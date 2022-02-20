@@ -8,18 +8,18 @@ import { ToDoListService } from '../to-do-list-service';
   styleUrls: ['./to-do-list.component.css']
 })
 export class ToDoListComponent implements OnInit {
+  ToDoList: ToDoListService;
   todos: string[] = [];
 
-  constructor() {
+  constructor(_ToDoList: ToDoListService) {
+    this.ToDoList = _ToDoList;
   }
 
   ngOnInit(): void {
   }
 
   pressEnter(event: KeyboardEvent): void {
-    if (event.code === 'Enter') {
-      this.todos.push((<HTMLInputElement>event.target).value);
-      (<HTMLInputElement>event.target).value = '';
-    }
+    this.todos = this.ToDoList.pressEnter(event);
   }
+
 }
