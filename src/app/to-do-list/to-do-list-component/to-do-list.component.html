@@ -10,11 +10,20 @@
           </svg></button>
       </div>
       <div class="col-12 mt-5">
-        <input type="text" class="p-3" placeholder="Create a new todo...">
+        <input type="text" class="p-3" placeholder="Create a new todo..." (keyup)="pressEnter($event)">
       </div>
       <div class="col-12 mt-5">
-        <ul class="p-3">
-          <li>Javascript is bad</li>
+        <ul>
+          <li *ngFor="let todo of todos">
+            <div class="row">
+              <div class="col-1">
+                <app-checkbox-radio></app-checkbox-radio>
+              </div>
+              <div class="col-11">
+                <span>{{ todo }}</span>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
