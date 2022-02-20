@@ -12,7 +12,7 @@ export class ToDoListService {
 
   pressEnter(event: KeyboardEvent): string[] {
     if (event.code === 'Enter') {
-      this.tasks.push((<HTMLInputElement>event.target).value);
+      this.tasks.unshift((<HTMLInputElement>event.target).value);
       (<HTMLInputElement>event.target).value = '';
     }
     return this.tasks
