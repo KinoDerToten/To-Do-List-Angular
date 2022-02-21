@@ -43,3 +43,11 @@
 .circulo input[type="checkbox"]:checked + label::after {
   opacity: 1;
 }
+
+.riscar{
+  text-decoration: line-through;
+}
+
+.naoRiscar{
+  text-decoration: none;
+}

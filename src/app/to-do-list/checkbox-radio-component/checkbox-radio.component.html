@@ -1,4 +1,12 @@
-<div class="circulo">
-  <input type="checkbox" [id]="id" (click)="onClick()" />
-  <label [for]="forLabel"><span></span></label>
+<div class="row">
+  <div class="col-1">
+    <div class="circulo">
+      <input type="checkbox" [id]="id" (click)="onClick()" />
+      <label [for]="forLabel"></label>
+    </div>
+  </div>
+  <div class="col-11" [ngClass]="{
+    'riscar': classe,
+    'naoRiscar': !classe
+  }"> {{ task }} </div>
 </div>

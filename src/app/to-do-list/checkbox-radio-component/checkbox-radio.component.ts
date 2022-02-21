@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { ToDoListService } from '../to-do-list-service';
 
@@ -13,7 +13,7 @@ export class CheckboxRadioComponent implements OnInit {
   public forLabel: number = 0;
   public ToDoList: ToDoListService;
   public classe: boolean = false;
-  @Output() mudouValor = new EventEmitter();
+  @Input() task: string = '';
 
   constructor(ToDoListService: ToDoListService) {
     this.ToDoList = ToDoListService;
@@ -26,6 +26,5 @@ export class CheckboxRadioComponent implements OnInit {
 
   onClick(): void {
     this.classe = !this.classe;
-    this.mudouValor.emit({ novaClasse: this.classe });
   }
 }

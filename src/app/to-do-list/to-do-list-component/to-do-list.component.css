@@ -60,14 +60,6 @@
   opacity: 1;
 }
 
-.riscar{
-  text-decoration: line-through;
-}
-
-.naoRiscar{
-  text-decoration: none;
-}
-
 button{
   background: none;
   border: none;
