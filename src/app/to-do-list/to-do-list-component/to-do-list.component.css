@@ -60,6 +60,14 @@
   opacity: 1;
 }
 
+.riscar{
+  text-decoration: line-through;
+}
+
+.naoRiscar{
+  text-decoration: none;
+}
+
 button{
   background: none;
   border: none;
@@ -82,7 +90,7 @@ ul{
 li{
   list-style: none;
   padding: 20px;
-  border-bottom: 1px solid #e6e5ea;
+  border-top: 1px solid #e6e5ea;
 }
 
 p{

@@ -10,6 +10,7 @@ import { ToDoListService } from '../to-do-list-service';
 export class ToDoListComponent implements OnInit {
   ToDoList: ToDoListService;
   todos: string[] = [];
+  classe: boolean;
 
   constructor(_ToDoList: ToDoListService) {
     this.ToDoList = _ToDoList;
@@ -22,4 +23,8 @@ export class ToDoListComponent implements OnInit {
     this.todos = this.ToDoList.pressEnter(event);
   }
 
+  onMudouValor(evento: any): void {
+    this.classe = evento.novaClasse;
+    console.log(evento);
+  }
 }
