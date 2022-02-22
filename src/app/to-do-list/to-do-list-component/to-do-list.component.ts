@@ -10,6 +10,7 @@ import { ToDoListService } from '../to-do-list-service';
 export class ToDoListComponent implements OnInit {
   ToDoList: ToDoListService;
   todos: string[] = [];
+  qtdTask: number;
   classe: boolean;
 
   constructor(_ToDoList: ToDoListService) {
@@ -21,10 +22,14 @@ export class ToDoListComponent implements OnInit {
 
   pressEnter(event: KeyboardEvent): void {
     this.todos = this.ToDoList.pressEnter(event);
+    this.qtdTask = this.todos.length;
   }
 
-  onMudouValor(evento: any): void {
-    this.classe = evento.novaClasse;
-    console.log(evento);
+  taskLength(event: any): void {
+    if (event.valor.target.checked === true) {
+      this.qtdTask -= 1;
+    } else {
+      this.qtdTask += 1;
+    }
   }
 }

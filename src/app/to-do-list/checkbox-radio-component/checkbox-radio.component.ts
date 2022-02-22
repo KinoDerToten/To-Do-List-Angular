@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 
 import { ToDoListService } from '../to-do-list-service';
 
@@ -13,7 +13,11 @@ export class CheckboxRadioComponent implements OnInit {
   public forLabel: number = 0;
   public ToDoList: ToDoListService;
   public classe: boolean = false;
+
   @Input() task: string = '';
+  @Input() tasks: string[] = [];
+  @Output() taskCheck = new EventEmitter();
+  @ViewChild('completedTask') completedTask: ElementRef;
 
   constructor(ToDoListService: ToDoListService) {
     this.ToDoList = ToDoListService;
@@ -24,7 +28,8 @@ export class CheckboxRadioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClick(): void {
+  onClick(event: any): void {
+    this.taskCheck.emit({ valor: event })
     this.classe = !this.classe;
   }
 }
