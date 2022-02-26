@@ -1,4 +1,6 @@
-.circulo {
+
+
+/*.circulo {
   position: relative;
 }
 
@@ -42,7 +44,7 @@
 
 .circulo input[type="checkbox"]:checked + label::after {
   opacity: 1;
-}
+}*/
 
 .riscar{
   text-decoration: line-through;

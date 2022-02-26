@@ -14,24 +14,33 @@
       </div>
       <div class="col-12 mt-5">
         <ul>
-          <li *ngFor="let todo of todos">
+          <li *ngFor="let task of tasks" (click)="checked(task['id'])">
             <div class="row">
-              <app-checkbox-radio [task]="todo" [tasks]="todos" (taskCheck)="taskLength($event)"></app-checkbox-radio>
-            </div>
-          </li>
-          <li *ngIf="todos.length > 0">
-            <div class="row">
-              <div class="col-4">
-                {{ qtdTask }} items left
-              </div>
-              <div class="col-3">
-                <div class="row">
-                  <div class="col-4">All</div>
-                  <div class="col-4">Active</div>
-                  <div class="col-4">Completed</div>
+              <div class="col-1">
+                <div>
+                  <div #liElement class="checkbox" id="{{ task['id'] }}">
+
+                  </div>
                 </div>
               </div>
-              <div class="col-5 text-end">Clear Completed</div>
+              <div class="col-11">
+                {{ task['name'] }}
+              </div>
+            </div>
+          </li>
+          <li *ngIf="tasks.length > 0">
+            <div class="row">
+              <div class="col-4">
+                {{ tasks.length }} items left
+              </div>
+              <div class="col-5">
+                <div class="row">
+                  <div class="col-3"><span class="click">All</span></div>
+                  <div class="col-3"><span class="click">Active</span></div>
+                  <div class="col-3"><span class="click">Completed</span></div>
+                </div>
+              </div>
+              <div class="col-3 text-end">Clear Completed</div>
             </div>
           </li>
         </ul>

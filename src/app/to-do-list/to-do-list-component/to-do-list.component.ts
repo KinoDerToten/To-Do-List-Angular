@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, AfterViewInit, ViewChildren } from '@angular/core';
 
 import { ToDoListService } from '../to-do-list-service';
 
@@ -7,29 +7,35 @@ import { ToDoListService } from '../to-do-list-service';
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.css']
 })
-export class ToDoListComponent implements OnInit {
-  ToDoList: ToDoListService;
-  todos: string[] = [];
-  qtdTask: number;
-  classe: boolean;
+export class ToDoListComponent implements OnInit, AfterViewInit {
+  public tasks: object[] = [];
+  public qtdTask: number = 0;
+  public checkbox: boolean = true;
 
-  constructor(_ToDoList: ToDoListService) {
-    this.ToDoList = _ToDoList;
+  @ViewChildren('liElement') liElement: any;
+
+  constructor(public ToDoList: ToDoListService) {
   }
 
   ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
   pressEnter(event: KeyboardEvent): void {
-    this.todos = this.ToDoList.pressEnter(event);
-    this.qtdTask = this.todos.length;
+    this.tasks = this.ToDoList.pressEnter(event);
+    this.qtdTask = this.tasks.length;
   }
 
-  taskLength(event: any): void {
-    if (event.valor.target.checked === true) {
-      this.qtdTask -= 1;
-    } else {
-      this.qtdTask += 1;
-    }
+  checked(id: string): void {
+    this.liElement.toArray().forEach((array: any) => {
+      if (array.nativeElement.id == id) {
+        array.nativeElement.classList.toggle('checked')
+      }
+    });
   }
+
 }

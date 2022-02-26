@@ -4,27 +4,18 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ToDoListService {
-  public id: number = 0;
-  public forLabel: number = 0;
-  public tasks: string[] = [];
+  public tasks = [];
 
   constructor() { }
 
-  pressEnter(event: KeyboardEvent): string[] {
+  pressEnter(event: KeyboardEvent): any[] {
     if (event.code === 'Enter') {
-      this.tasks.unshift((<HTMLInputElement>event.target).value);
+      this.tasks.unshift({
+        name: (<HTMLInputElement>event.target).value,
+        id: (<HTMLInputElement>event.target).value
+      });
       (<HTMLInputElement>event.target).value = '';
     }
     return this.tasks
-  }
-
-  idAleatorio(): number {
-    this.id++;
-    return this.id
-  }
-
-  forAleatorio(): number {
-    this.forLabel++;
-    return this.forLabel
   }
 }
