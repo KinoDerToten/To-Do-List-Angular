@@ -13,6 +13,7 @@ export class ToDoListComponent implements OnInit, AfterViewInit {
   public checkbox: boolean = true;
 
   @ViewChildren('liElement') liElement: any;
+  @ViewChildren('taskItem') taskItem: any;
 
   constructor(public ToDoList: ToDoListService) {
   }
@@ -30,12 +31,26 @@ export class ToDoListComponent implements OnInit, AfterViewInit {
     this.qtdTask = this.tasks.length;
   }
 
-  checked(id: string): void {
+  checked(id: string, outerText: string): void {
     this.liElement.toArray().forEach((array: any) => {
       if (array.nativeElement.id == id) {
-        array.nativeElement.classList.toggle('checked')
+        array.nativeElement.classList.toggle('checked');
+
+        if (array.nativeElement.classList.contains('checked')) {
+          this.qtdTask -= 1;
+        } else {
+          this.qtdTask += 1;
+        }
       }
     });
+
+    this.taskItem.toArray().forEach((array: any) => {
+      if (array.nativeElement.outerText == outerText) {
+        array.nativeElement.classList.toggle('checked-text')
+      }
+    });
+
+
   }
 
 }
