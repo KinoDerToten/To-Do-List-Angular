@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, AfterViewInit, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChildren, ViewChild } from '@angular/core';
 
 import { ToDoListService } from '../to-do-list-service';
 
@@ -7,22 +7,20 @@ import { ToDoListService } from '../to-do-list-service';
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.css']
 })
-export class ToDoListComponent implements OnInit, AfterViewInit {
+export class ToDoListComponent implements OnInit {
   public tasks: object[] = [];
   public qtdTask: number = 0;
   public checkbox: boolean = true;
+  public id: string = null;
 
-  @ViewChildren('liElement') liElement: any;
+  @ViewChildren('checkElement') checkElement: any;
   @ViewChildren('taskItem') taskItem: any;
+  @ViewChildren('liElement') liElement: any;
 
   constructor(public ToDoList: ToDoListService) {
   }
 
   ngOnInit(): void {
-
-  }
-
-  ngAfterViewInit(): void {
 
   }
 
@@ -32,7 +30,7 @@ export class ToDoListComponent implements OnInit, AfterViewInit {
   }
 
   checked(id: string, outerText: string): void {
-    this.liElement.toArray().forEach((array: any) => {
+    this.checkElement.toArray().forEach((array: any) => {
       if (array.nativeElement.id == id) {
         array.nativeElement.classList.toggle('checked');
 
@@ -49,8 +47,14 @@ export class ToDoListComponent implements OnInit, AfterViewInit {
         array.nativeElement.classList.toggle('checked-text')
       }
     });
+  }
 
-
+  completed(): void {
+    this.checkElement.toArray().forEach((array: any) => {
+      if (array.nativeElement.id == this.id) {
+        this.liElement.toArray().forEach((array: any) => array.nativeElement.classList.add('esconder'))
+      }
+    });
   }
 
 }

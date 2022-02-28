@@ -14,11 +14,11 @@
       </div>
       <div class="col-12 mt-5">
         <ul>
-          <li *ngFor="let task of tasks" (click)="checked(task['id'], task['name'])">
+          <li #liElement *ngFor="let task of tasks" (click)="checked(task['id'], task['name'])">
             <div class="row">
               <div class="col-1">
                 <div class="container-check">
-                  <div #liElement class="checkbox" id="{{ task['id'] }}">
+                  <div #checkElement class="checkbox" id="{{ task['id'] }}">
 
                   </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="row">
                   <div class="col-3"><span class="click">All</span></div>
                   <div class="col-3"><span class="click">Active</span></div>
-                  <div class="col-3"><span class="click">Completed</span></div>
+                  <div class="col-3"><span class="click" (click)="completed()">Completed</span></div>
                 </div>
               </div>
               <div class="col-3 text-end">Clear Completed</div>
