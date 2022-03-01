@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ViewChildren, ViewChild } from '@angular/core';
 
 import { ToDoListService } from '../to-do-list-service';
@@ -11,11 +12,12 @@ export class ToDoListComponent implements OnInit {
   public tasks: object[] = [];
   public qtdTask: number = 0;
   public checkbox: boolean = true;
-  public id: string = null;
+  public id: string[] = [];
 
   @ViewChildren('checkElement') checkElement: any;
   @ViewChildren('taskItem') taskItem: any;
   @ViewChildren('liElement') liElement: any;
+  @ViewChildren('iconCheck') iconCheck: any;
 
   constructor(public ToDoList: ToDoListService) {
   }
@@ -29,10 +31,13 @@ export class ToDoListComponent implements OnInit {
     this.qtdTask = this.tasks.length;
   }
 
-  checked(id: string, outerText: string): void {
+  checked(id: string, outerText: string): string[] {
     this.checkElement.toArray().forEach((array: any) => {
       if (array.nativeElement.id == id) {
+        array.nativeElement.classList.toggle('checkbox');
         array.nativeElement.classList.toggle('checked');
+
+        array.nativeElement.firstChild.classList.toggle('icon-check');
 
         if (array.nativeElement.classList.contains('checked')) {
           this.qtdTask -= 1;
@@ -47,14 +52,13 @@ export class ToDoListComponent implements OnInit {
         array.nativeElement.classList.toggle('checked-text')
       }
     });
+
+    this.id.push(id);
+
+    return this.id
   }
 
   completed(): void {
-    this.checkElement.toArray().forEach((array: any) => {
-      if (array.nativeElement.id == this.id) {
-        this.liElement.toArray().forEach((array: any) => array.nativeElement.classList.add('esconder'))
-      }
-    });
   }
 
 }

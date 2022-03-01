@@ -43,28 +43,32 @@
   display: inline-block;
 }
 
-.checkbox::after{
+.checked{
+  background-image: linear-gradient(140deg,#57DDFF,#3F7EFD,#E9BDFF);
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 28px;
+  display: inline-block;
+}
+
+ .icon-check{
   border: 2px solid #fff;
   border-top: none;
   border-right: none;
   content: "";
   height: 6px;
   left: 7px;
-  opacity: 0;
+  opacity: 1;
   position: absolute;
   top: 8px;
   transform: rotate(-45deg);
   width: 12px;
   display: inline-block;
-}
-
-.checked{
-  background-image: linear-gradient(140deg,#57DDFF,#3F7EFD,#E9BDFF);
-  display: inline-block;
-}
-
-.checked.checkbox::after{
-  opacity: 1;
 }
 
 .checked-text{
