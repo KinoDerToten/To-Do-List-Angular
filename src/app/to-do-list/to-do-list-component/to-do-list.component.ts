@@ -31,15 +31,14 @@ export class ToDoListComponent implements OnInit {
     this.qtdTask = this.tasks.length;
   }
 
-  checked(id: string, outerText: string): string[] {
-    this.checkElement.toArray().forEach((array: any) => {
-      if (array.nativeElement.id == id) {
-        array.nativeElement.classList.toggle('checkbox');
-        array.nativeElement.classList.toggle('checked');
+  checked(id: string): string[] {
+    this.checkElement.toArray().forEach((checkElement: any) => {
+      if (checkElement.nativeElement.id == id) {
+        checkElement.nativeElement.classList.toggle('checkbox');
+        checkElement.nativeElement.classList.toggle('checked');
+        checkElement.nativeElement.firstChild.classList.toggle('icon-check');
 
-        array.nativeElement.firstChild.classList.toggle('icon-check');
-
-        if (array.nativeElement.classList.contains('checked')) {
+        if (checkElement.nativeElement.classList.contains('checked')) {
           this.qtdTask -= 1;
         } else {
           this.qtdTask += 1;
@@ -47,9 +46,9 @@ export class ToDoListComponent implements OnInit {
       }
     });
 
-    this.taskItem.toArray().forEach((array: any) => {
-      if (array.nativeElement.outerText == outerText) {
-        array.nativeElement.classList.toggle('checked-text')
+    this.taskItem.toArray().forEach((taskItem: any) => {
+      if (taskItem.nativeElement.outerText == id) {
+        taskItem.nativeElement.classList.toggle('checked-text')
       }
     });
 
@@ -59,6 +58,13 @@ export class ToDoListComponent implements OnInit {
   }
 
   completed(): void {
+    this.checkElement.toArray().forEach((checkElement: any) => {
+      this.liElement.toArray().forEach((liElement: any) => {
+        if (checkElement.nativeElement.classList.contains('checkbox')) {
+          liElement.nativeElement.classList.add('esconder');
+        }
+      });
+    });
   }
 
 }
