@@ -43,12 +43,14 @@ export class ToDoListComponent implements OnInit {
         } else {
           this.qtdTask += 1;
         }
+
+
       }
     });
 
-    this.taskItem.toArray().forEach((taskItem: any) => {
-      if (taskItem.nativeElement.outerText == id) {
-        taskItem.nativeElement.classList.toggle('checked-text')
+    this.liElement.toArray().forEach((liElement: any) => {
+      if (liElement.nativeElement.id == id) {
+        liElement.nativeElement.classList.toggle('checked-text')
       }
     });
 
@@ -58,13 +60,7 @@ export class ToDoListComponent implements OnInit {
   }
 
   completed(): void {
-    this.checkElement.toArray().forEach((checkElement: any) => {
-      this.liElement.toArray().forEach((liElement: any) => {
-        if (checkElement.nativeElement.classList.contains('checkbox')) {
-          liElement.nativeElement.classList.add('esconder');
-        }
-      });
-    });
+
   }
 
 }

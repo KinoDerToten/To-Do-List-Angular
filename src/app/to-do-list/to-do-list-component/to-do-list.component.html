@@ -14,7 +14,7 @@
       </div>
       <div class="col-12 mt-5">
         <ul>
-          <li #liElement *ngFor="let task of tasks" (click)="checked(task['id'])">
+          <li #liElement *ngFor="let task of tasks" (click)="checked(task['id'])" id="{{ task['name'] }}">
             <div class="row">
               <div class="col-1">
                 <div class="container-check">
