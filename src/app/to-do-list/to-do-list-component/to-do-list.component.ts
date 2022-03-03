@@ -78,4 +78,12 @@ export class ToDoListComponent implements OnInit {
     });
   }
 
+  all(): void {
+    this.liElement.toArray().forEach((liElement: any) => {
+      if (liElement.nativeElement.classList.contains('esconder')) {
+        liElement.nativeElement.classList.remove('esconder');
+      }
+    });
+  }
+
 }
