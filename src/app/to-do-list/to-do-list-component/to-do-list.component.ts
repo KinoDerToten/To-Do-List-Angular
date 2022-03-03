@@ -51,7 +51,6 @@ export class ToDoListComponent implements OnInit {
     this.liElement.toArray().forEach((liElement: any) => {
       if (liElement.nativeElement.id == id) {
         liElement.nativeElement.classList.toggle('checked-text')
-        console.log(liElement.nativeElement.classList)
       }
     });
 
@@ -72,6 +71,10 @@ export class ToDoListComponent implements OnInit {
 
   active(): void {
     this.liElement.toArray().forEach((liElement: any) => {
+      if (liElement.nativeElement.classList.contains('esconder')) {
+        liElement.nativeElement.classList.remove('esconder');
+      }
+
       if (liElement.nativeElement.classList.contains('checked-text')) {
         liElement.nativeElement.classList.add('esconder');
       }
