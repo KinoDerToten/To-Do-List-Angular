@@ -71,7 +71,13 @@
   display: inline-block;
 }
 
+.text{
+  color: #4c4b5b;
+  opacity: 0.5;
+}
+
 .checked-text{
+  color: #4c4b5b;
   text-decoration: line-through;
 }
 
