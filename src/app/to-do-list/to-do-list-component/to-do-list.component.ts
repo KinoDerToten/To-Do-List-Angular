@@ -43,8 +43,6 @@ export class ToDoListComponent implements OnInit {
         } else {
           this.qtdTask += 1;
         }
-
-
       }
     });
 
@@ -62,8 +60,10 @@ export class ToDoListComponent implements OnInit {
   completed(): void {
     this.liElement.toArray().forEach((liElement: any) => {
       if (liElement.nativeElement.classList.contains('checked-text')) {
-        return liElement
+        liElement.nativeElement.classList.remove('esconder');
+        liElement.nativeElement.classList.add('mostrar');
       } else {
+        liElement.nativeElement.classList.remove('mostrar');
         liElement.nativeElement.classList.add('esconder');
       }
     });
@@ -71,12 +71,12 @@ export class ToDoListComponent implements OnInit {
 
   active(): void {
     this.liElement.toArray().forEach((liElement: any) => {
-      if (liElement.nativeElement.classList.contains('esconder')) {
-        liElement.nativeElement.classList.remove('esconder');
-      }
-
       if (liElement.nativeElement.classList.contains('checked-text')) {
+        liElement.nativeElement.classList.remove('mostrar');
         liElement.nativeElement.classList.add('esconder');
+      } else {
+        liElement.nativeElement.classList.remove('esconder');
+        liElement.nativeElement.classList.add('mostrar');
       }
     });
   }
@@ -85,7 +85,9 @@ export class ToDoListComponent implements OnInit {
     this.liElement.toArray().forEach((liElement: any) => {
       if (liElement.nativeElement.classList.contains('esconder')) {
         liElement.nativeElement.classList.remove('esconder');
+        liElement.nativeElement.classList.add('mostrar');
       }
+
     });
   }
 
