@@ -107,4 +107,16 @@ export class ToDoListComponent implements OnInit {
     });
   }
 
+  clearCompleted(): void {
+    this.liElement.toArray().forEach((liElement: any) => {
+      if (liElement.nativeElement.classList.contains('checked-text')) {
+        this.tasks.forEach((tasks: any) => {
+          if (tasks.name == liElement.nativeElement.id) {
+            this.tasks.splice(this.tasks.indexOf(tasks), 1);
+          }
+        });
+      }
+    });
+  }
+
 }
