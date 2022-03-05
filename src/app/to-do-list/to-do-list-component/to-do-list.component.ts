@@ -1,6 +1,4 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, ViewChildren, ViewChild } from '@angular/core';
-
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { ToDoListService } from '../to-do-list-service';
 
 @Component({
@@ -26,9 +24,16 @@ export class ToDoListComponent implements OnInit {
 
   }
 
-  pressEnter(event: KeyboardEvent): void {
-    this.tasks = this.ToDoList.pressEnter(event);
-    this.qtdTask = this.tasks.length;
+  pressEnter(event: KeyboardEvent): any {
+    if (event.key === 'Enter') {
+      this.tasks = this.ToDoList.pressEnter(event);
+      this.qtdTask = this.tasks.length;
+      this.checkElement.toArray().forEach((checkElement: any) => {
+        if (checkElement.nativeElement.classList.contains('checked')) {
+          this.qtdTask -= 1;
+        }
+      });
+    }
   }
 
   checked(id: string): string[] {
@@ -67,9 +72,12 @@ export class ToDoListComponent implements OnInit {
         liElement.nativeElement.classList.add('esconder');
       }
     });
+
+    this.qtdTask = 0;
   }
 
   active(): void {
+    this.qtdTask = 0;
     this.liElement.toArray().forEach((liElement: any) => {
       if (liElement.nativeElement.classList.contains('checked-text')) {
         liElement.nativeElement.classList.remove('mostrar');
@@ -77,17 +85,25 @@ export class ToDoListComponent implements OnInit {
       } else {
         liElement.nativeElement.classList.remove('esconder');
         liElement.nativeElement.classList.add('mostrar');
+        if (liElement.nativeElement.classList.contains('mostrar')) {
+          this.qtdTask += 1;
+        }
       }
     });
   }
 
   all(): void {
+    this.qtdTask = this.tasks.length;
+    this.checkElement.toArray().forEach((checkElement: any) => {
+      if (checkElement.nativeElement.classList.contains('checked')) {
+        this.qtdTask -= 1;
+      }
+    });
     this.liElement.toArray().forEach((liElement: any) => {
       if (liElement.nativeElement.classList.contains('esconder')) {
         liElement.nativeElement.classList.remove('esconder');
         liElement.nativeElement.classList.add('mostrar');
       }
-
     });
   }
 
