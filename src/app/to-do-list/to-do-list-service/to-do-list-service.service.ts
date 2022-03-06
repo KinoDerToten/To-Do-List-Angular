@@ -9,11 +9,15 @@ export class ToDoListService {
   constructor() { }
 
   pressEnter(event: KeyboardEvent): any[] {
-    this.tasks.unshift({
-      name: (<HTMLInputElement>event.target).value,
-      id: (<HTMLInputElement>event.target).value
-    });
-    (<HTMLInputElement>event.target).value = '';
+    if ((<HTMLInputElement>event.target).value == '') {
+      alert('Por Favor insira uma tarefa!!!');
+    } else {
+      this.tasks.unshift({
+        name: (<HTMLInputElement>event.target).value,
+        id: (<HTMLInputElement>event.target).value
+      });
+      (<HTMLInputElement>event.target).value = '';
+    }
     return this.tasks
   }
 }
