@@ -8,9 +8,10 @@ export class ToDoListService {
 
   constructor() { }
 
-  pressEnter(event: KeyboardEvent): any[] {
-    if ((<HTMLInputElement>event.target).value == '') {
+  pressEnter(event: KeyboardEvent): object[] {
+    if ((<HTMLInputElement>event.target).value == '' || this.tasks.map((task: any) => /\s/g.test(task))) {
       alert('Por Favor insira uma tarefa!!!');
+      (<HTMLInputElement>event.target).value = '';
     } else {
       this.tasks.unshift({
         name: (<HTMLInputElement>event.target).value,
