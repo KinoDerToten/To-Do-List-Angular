@@ -10,7 +10,6 @@ export class ToDoListComponent implements OnInit {
   public tasks: object[] = [];
   public qtdTask: number = 0;
   public checkbox: boolean = true;
-  public id: string[] = [];
 
   @ViewChildren('checkElement') checkElement: any;
   @ViewChildren('taskItem') taskItem: any;
@@ -24,7 +23,7 @@ export class ToDoListComponent implements OnInit {
 
   }
 
-  pressEnter(event: KeyboardEvent): any {
+  pressEnter(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       this.tasks = this.ToDoList.pressEnter(event);
       this.qtdTask = this.tasks.length;
@@ -36,7 +35,7 @@ export class ToDoListComponent implements OnInit {
     }
   }
 
-  checked(id: string): string[] {
+  checked(id: string): void {
     this.checkElement.toArray().forEach((checkElement: any) => {
       if (checkElement.nativeElement.id == id) {
         checkElement.nativeElement.classList.toggle('checkbox');
@@ -56,10 +55,6 @@ export class ToDoListComponent implements OnInit {
         liElement.nativeElement.classList.toggle('checked-text')
       }
     });
-
-    this.id.push(id);
-
-    return this.id
   }
 
   completed(): void {
