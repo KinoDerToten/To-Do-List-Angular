@@ -3,7 +3,7 @@
   width: 100%;
   background-image: url('../../assets/bg-desktop-light.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% auto;
 }
 
 .container-main{
