@@ -1,52 +1,11 @@
-<div class="container-body">
-  <div class="container-main pt-5">
-    <div class="row">
-      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-        <h1 class="text-white title">TODO</h1>
-      </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-end"><button><svg xmlns="http://www.w3.org/2000/svg"
-            width="26" height="26">
-            <path fill="#FFF" fill-rule="evenodd"
-              d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z" />
-          </svg></button>
-      </div>
-      <div class="col-12 mt-5">
-        <input type="text" class="p-3" placeholder="Create a new todo..." (keyup)="pressEnter($event)">
-      </div>
-      <div class="col-12 mt-5">
-        <ul>
-          <li #liElement *ngFor="let task of tasks" (click)="checked(task['id'])" id="{{ task['name'] }}"
-            class="mostrar">
-            <div class="row">
-              <div class="col-1">
-                <div class="container-check">
-                  <div #checkElement class="checkbox" id="{{ task['id'] }}">
-                    <div #iconCheck></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-11" #taskItem>
-                {{ task['name'] }}
-              </div>
-            </div>
-          </li>
-          <li *ngIf="tasks.length > 0">
-            <div class="row">
-              <div class="col-4">
-                {{ qtdTask }} items left
-              </div>
-              <div class="col-5">
-                <div class="row">
-                  <div class="col-3"><span class="click" (click)="all()">All</span></div>
-                  <div class="col-3"><span class="click" (click)="active()">Active</span></div>
-                  <div class="col-3"><span class="click" (click)="completed()">Completed</span></div>
-                </div>
-              </div>
-              <div class="col-3 text-end click" (click)="clearCompleted()">Clear Completed</div>
-            </div>
-          </li>
-        </ul>
-      </div>
+<div class="container">
+  <div class="container-main">
+    <div class="title">
+      <h1>TODO</h1>
     </div>
+    <div class="toggle"><button><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+          <path fill="#FFF" fill-rule="evenodd"
+            d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z" />
+        </svg></button></div>
   </div>
 </div>
