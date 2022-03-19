@@ -7,7 +7,10 @@ import { ToDoListService } from '../to-do-list-service';
   styleUrls: ['./to-do-list.component.css']
 })
 export class ToDoListComponent implements OnInit {
-  public tasks: object[] = [];
+  public tasks: object[] = [{
+    name: 'rodrigo',
+    id: 'silva'
+  }];
   public qtdTask: number = 0;
   public checkbox: boolean = true;
 

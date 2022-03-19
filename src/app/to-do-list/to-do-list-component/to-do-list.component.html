@@ -1,11 +1,83 @@
 <div class="container">
-  <div class="container-main">
-    <div class="title">
-      <h1>TODO</h1>
+  <header class="flex-row">
+    <h1>TODO</h1>
+    <div class="theme">
+      <input type="checkbox" name="theme" id="theme">
+      <label for="theme"></label>
     </div>
-    <div class="toggle"><button><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
-          <path fill="#FFF" fill-rule="evenodd"
-            d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z" />
-        </svg></button></div>
-  </div>
+  </header>
+
+  <main>
+
+    <div class="addNewItem">
+      <input type="text" placeholder="Create a new todo..." name="addItem" id="addItem">
+    </div>
+
+    <section>
+      <ul>
+        <li>
+          <label>
+            <input type="checkbox" name="todoItem" checked>
+            <span class="checkmark"></span>
+            <span>Rodrigo</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="todoItem">
+            <span class="checkmark"></span>
+            <span>Damasceno</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="todoItem">
+            <span class="checkmark"></span>
+            <span>da</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="todoItem">
+            <span class="checkmark"></span>
+            <span>Tiago</span>
+          </label>
+        </li>
+      </ul>
+    </section>
+    <div class="filter-box flex-row">
+      <div class="items-left"><span>3 items left</span></div>
+      <div class="filter-desktop">
+        <label>
+          <input type="radio" name="radio-box" checked>
+          <span>All</span>
+        </label>
+        <label>
+          <input type="radio" name="radio-box">
+          <span>Active</span>
+        </label>
+        <label>
+          <input type="radio" name="radio-box">
+          <span>Completed</span>
+        </label>
+      </div>
+      <div class="clear-completed">
+        <span>Clear Completed</span>
+      </div>
+    </div>
+    <div class="filter-mobile flex-row">
+      <label>
+        <input type="radio" name="radio" checked>
+        <span>All</span>
+      </label>
+      <label>
+        <input type="radio" name="radio">
+        <span>Active</span>
+      </label>
+      <label>
+        <input type="radio" name="radio">
+        <span>Completed</span>
+      </label>
+    </div>
+  </main>
 </div>
