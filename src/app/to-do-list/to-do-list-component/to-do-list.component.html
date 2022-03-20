@@ -10,19 +10,20 @@
   <main>
 
     <div class="addNewItem">
-      <input type="text" placeholder="Create a new todo..." name="addItem" id="addItem">
+      <input type="text" placeholder="Create a new todo..." name="addItem" id="addItem" (keyup)="addItemTask($event)">
     </div>
 
     <section>
       <ul>
-        <li>
+        <li class="flex-row" *ngFor="let task of TaskList">
           <label>
-            <input type="checkbox" name="todoItem" checked>
+            <input type="checkbox" name="todoItem">
             <span class="checkmark"></span>
-            <span>Rodrigo</span>
+            <span>{{ task }}</span>
           </label>
+          <span class="remove-item"></span>
         </li>
-        <li>
+        <!-- <li>
           <label>
             <input type="checkbox" name="todoItem">
             <span class="checkmark"></span>
@@ -42,7 +43,7 @@
             <span class="checkmark"></span>
             <span>Tiago</span>
           </label>
-        </li>
+        </li> -->
       </ul>
     </section>
     <div class="filter-box flex-row">
