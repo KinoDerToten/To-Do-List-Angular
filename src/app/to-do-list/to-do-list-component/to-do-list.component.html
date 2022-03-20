@@ -15,45 +15,24 @@
 
     <section>
       <ul>
-        <li class="flex-row" *ngFor="let task of TaskList">
+        <li class="flex-row" *ngFor="let task of TaskList" #liElement>
           <label>
-            <input type="checkbox" name="todoItem">
+            <input type="checkbox" name="todoItem" #inputElement>
             <span class="checkmark"></span>
             <span>{{ task }}</span>
           </label>
-          <span class="remove-item"></span>
+          <span class="remove-item" (click)="removeTask(task)"></span>
         </li>
-        <!-- <li>
-          <label>
-            <input type="checkbox" name="todoItem">
-            <span class="checkmark"></span>
-            <span>Damasceno</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="todoItem">
-            <span class="checkmark"></span>
-            <span>da</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" name="todoItem">
-            <span class="checkmark"></span>
-            <span>Tiago</span>
-          </label>
-        </li> -->
       </ul>
     </section>
-    <div class="filter-box flex-row">
-      <div class="items-left"><span>3 items left</span></div>
+    <div class="filter-box flex-row" *ngIf="TaskList.length > 0">
+      <div class="items-left"><span>{{ qtdTask }} items left</span></div>
       <div class="filter-desktop">
-        <label>
+        <label (click)="all()">
           <input type="radio" name="radio-box" checked>
           <span>All</span>
         </label>
-        <label>
+        <label (click)="active()">
           <input type="radio" name="radio-box">
           <span>Active</span>
         </label>

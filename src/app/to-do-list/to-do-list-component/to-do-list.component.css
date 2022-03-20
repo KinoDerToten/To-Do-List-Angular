@@ -258,6 +258,14 @@ ul li input[type="checkbox"]:checked ~ span{
     background-size: 100% 30%;
   }
 }
+
+.mostrar{
+  display: block;
+}
+
+.esconder{
+  display: none;
+}
 /*.flex-row{
   display: flex;
   flex-flow: row nowrap;
