@@ -39,9 +39,9 @@ export class ToDoListComponent implements OnInit {
   }
 
   obterTask(): any[] {
-    if (this.stats === 'active') {
+    if (this.stats === 'active' || this.stats === '_active') {
       return this.TaskList.filter((task: any) => task.concluido == false);
-    } else if (this.stats === 'completed') {
+    } else if (this.stats === 'completed' || this.stats === '_completed') {
       return this.TaskList.filter((task: any) => task.concluido == true);
     } else {
       return this.TaskList
@@ -57,11 +57,6 @@ export class ToDoListComponent implements OnInit {
     if (task.concluido == false) {
       this.itemsLeft--;
     }
-  }
-
-  deleteTask(taskDeleted: ToDoListModel): void {
-    let index: number = this.TaskList.findIndex(task => task.id === taskDeleted.id);
-    console.log(this.TaskList.splice(index, 1));
   }
 
   clearCompleted(): any {

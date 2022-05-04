@@ -46,16 +46,16 @@
       </div>
     </div>
     <div class="filter-mobile flex-row">
-      <label>
-        <input type="radio" name="radio" checked>
+      <label (click)="mudarStats($event)">
+        <input type="radio" name="radio" checked id="_all">
         <span>All</span>
       </label>
-      <label>
-        <input type="radio" name="radio">
+      <label (click)="mudarStats($event)">
+        <input type="radio" name="radio" id="_active">
         <span>Active</span>
       </label>
-      <label>
-        <input type="radio" name="radio">
+      <label (click)="mudarStats($event)">
+        <input type="radio" name="radio" id="_completed">
         <span>Completed</span>
       </label>
     </div>
