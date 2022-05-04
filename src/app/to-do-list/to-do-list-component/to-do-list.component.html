@@ -10,39 +10,39 @@
   <main>
 
     <div class="addNewItem">
-      <input type="text" placeholder="Create a new todo..." name="addItem" id="addItem" (keyup)="addItemTask($event)">
+      <input type="text" placeholder="Create a new todo..." name="addItem" (keyup.enter)="addTodo($event)">
     </div>
 
     <section>
       <ul>
-        <li class="flex-row" *ngFor="let task of TaskList" #liElement>
+        <li class="flex-row" *ngFor="let task of obterTask()">
           <label>
-            <input type="checkbox" name="todoItem" #inputElement>
+            <input type="checkbox" name="todoItem" (change)="todoCompleted(task)" [checked]="task.concluido">
             <span class="checkmark"></span>
-            <span>{{ task }}</span>
+            <span>{{ task.task }}</span>
           </label>
           <span class="remove-item" (click)="removeTask(task)"></span>
         </li>
       </ul>
     </section>
     <div class="filter-box flex-row" *ngIf="TaskList.length > 0">
-      <div class="items-left"><span>{{ qtdTask }} items left</span></div>
+      <div class="items-left"><span> {{ itemsLeft }} items left</span></div>
       <div class="filter-desktop">
-        <label (click)="all()">
-          <input type="radio" name="radio-box" checked>
+        <label (click)="mudarStats($event)">
+          <input type="radio" name="radio-box" id="all" checked>
           <span>All</span>
         </label>
-        <label (click)="active()">
-          <input type="radio" name="radio-box">
+        <label (click)="mudarStats($event)">
+          <input type="radio" name="radio-box" id="active">
           <span>Active</span>
         </label>
-        <label>
-          <input type="radio" name="radio-box">
+        <label (click)="mudarStats($event)">
+          <input type="radio" name="radio-box" id="completed">
           <span>Completed</span>
         </label>
       </div>
-      <div class="clear-completed">
-        <span>Clear Completed</span>
+      <div class="clear-completed" (click)="clearCompleted()">
+        <span id="clear">Clear Completed</span>
       </div>
     </div>
     <div class="filter-mobile flex-row">

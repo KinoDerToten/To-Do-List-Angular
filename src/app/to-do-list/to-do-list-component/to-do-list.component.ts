@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToDoListService } from '../to-do-list-service';
+import { ToDoListModel } from './to-do-list.model';
 
 @Component({
   selector: 'app-to-do-list',
@@ -8,46 +9,64 @@ import { ToDoListService } from '../to-do-list-service';
 })
 export class ToDoListComponent implements OnInit {
   public ToDoList: ToDoListService
-  public TaskList: string[] = ['Viajar de avião', 'Regar as plantas de manhã', 'Ir na academia'];
-  public qtdTask: number = this.TaskList.length;
-
-  @ViewChildren('liElement') liElement: QueryList<'liElement'>;
-  @ViewChildren('inputElement') inputElement: QueryList<'inputElement'>;
+  public TaskList: ToDoListModel[] = [];
+  public stats: string = 'all';
+  public itemsLeft: number = 0;
+  public id: number = 0;
 
   constructor(public _ToDoList: ToDoListService) {
     this.ToDoList = _ToDoList;
   }
 
   ngOnInit(): void {
-
   }
 
-  addItemTask(e: KeyboardEvent): void {
-    if (e.code === 'Enter' && (<HTMLInputElement>e.target).value.length > 0) {
-      this.TaskList.unshift((<HTMLInputElement>e.target).value);
-      (<HTMLInputElement>e.target).value = '';
+  addTodo(event: any): void {
+    this.TaskList.push(new ToDoListModel(event.target.value, this.id));
+    event.target.value = '';
+    this.itemsLeft++;
+    this.id++;
+  }
 
-      this.itemsLeft(1);
+  todoCompleted(task: ToDoListModel): void {
+    task.concluido = !task.concluido;
+    if (task.concluido) {
+      this.itemsLeft--; .0000
+
+    } else {
+      this.itemsLeft++;
     }
   }
 
-  removeTask(task: string): void {
+  obterTask(): any[] {
+    if (this.stats === 'active') {
+      return this.TaskList.filter((task: any) => task.concluido == false);
+    } else if (this.stats === 'completed') {
+      return this.TaskList.filter((task: any) => task.concluido == true);
+    } else {
+      return this.TaskList
+    }
+  }
+
+  mudarStats(event: any): void {
+    this.stats = event.target.id;
+  }
+
+  removeTask(task: any): void {
     this.TaskList.splice(this.TaskList.indexOf(task), 1);
+    if (task.concluido == false) {
+      this.itemsLeft--;
+    }
   }
 
-  itemsLeft(qtdItems: number): void {
-    this.qtdTask += qtdItems;
+  deleteTask(taskDeleted: ToDoListModel): void {
+    let index: number = this.TaskList.findIndex(task => task.id === taskDeleted.id);
+    console.log(this.TaskList.splice(index, 1));
   }
 
-  all(): void {
-    this.liElement.toArray().forEach((liElement: any) => {
-      if (liElement.nativeElement.classList.contains('esconder')) {
-        liElement.nativeElement.classList.remove('esconder');
-      }
-    });
-  }
-
-  active(): void {
-
+  clearCompleted(): any {
+    while (this.TaskList.findIndex(task => task.concluido === true) >= 0) {
+      this.TaskList.splice(this.TaskList.findIndex(task => task.concluido === true), 1);
+    };
   }
 }
