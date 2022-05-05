@@ -39,9 +39,9 @@ export class ToDoListComponent implements OnInit {
   }
 
   obterTask(): any[] {
-    if (this.stats === 'active' || this.stats === '_active') {
+    if (this.stats === 'active' || this.stats === 'active-mobile') {
       return this.TaskList.filter((task: any) => task.concluido == false);
-    } else if (this.stats === 'completed' || this.stats === '_completed') {
+    } else if (this.stats === 'completed' || this.stats === 'completed-mobile') {
       return this.TaskList.filter((task: any) => task.concluido == true);
     } else {
       return this.TaskList
