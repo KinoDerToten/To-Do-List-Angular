@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" [ngClass]="{'theme-light': !theme, 'theme-dark': theme}">
   <header class="flex-row">
     <h1>TODO</h1>
     <div class="theme">
       <input type="checkbox" name="theme" id="theme">
-      <label for="theme"></label>
+      <label for="theme" (click)="onClickTheme()"></label>
     </div>
   </header>
 
@@ -13,7 +13,7 @@
       <input type="text" placeholder="Create a new todo..." name="addItem" (keyup.enter)="addTodo($event)">
     </div>
 
-    <section>
+    <section class="content">
       <ul>
         <li class="flex-row" *ngFor="let task of obterTask()">
           <label>
@@ -45,7 +45,7 @@
         <span id="clear">Clear Completed</span>
       </div>
     </div>
-    <div class="filter-mobile flex-row">
+    <div class="filter-mobile flex-row" *ngIf="TaskList.length > 0">
       <label (click)="mudarStats($event)">
         <input type="radio" name="radio" checked id="all-mobile">
         <span>All</span>

@@ -12,7 +12,7 @@ export class ToDoListComponent implements OnInit {
   public TaskList: ToDoListModel[] = [];
   public stats: string = 'all';
   public itemsLeft: number = 0;
-  public id: number = 0;
+  public theme: boolean = false;
 
   constructor(public _ToDoList: ToDoListService) {
     this.ToDoList = _ToDoList;
@@ -21,11 +21,18 @@ export class ToDoListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onClickTheme() {
+    this.theme = !this.theme;
+  }
+
   addTodo(event: any): void {
-    this.TaskList.push(new ToDoListModel(event.target.value, this.id));
-    event.target.value = '';
-    this.itemsLeft++;
-    this.id++;
+    if (event.target.value.trim().length === 0) {
+      event.target.value = '';
+    } else {
+      this.TaskList.push(new ToDoListModel(event.target.value));
+      event.target.value = '';
+      this.itemsLeft++;
+    }
   }
 
   todoCompleted(task: ToDoListModel): void {
